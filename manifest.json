@@ -12,7 +12,10 @@
         "content_scripts/grades_page_scrape.js",
         "content_scripts/content_script.js"
       ],
-      "css": ["plot/bar_chart.css"]
+      "css": [
+        "plot/bar_chart.css",
+        "content_scripts/overlay.css"
+      ]
     }
   ],
 

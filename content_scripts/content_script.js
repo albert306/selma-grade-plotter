@@ -32,33 +32,14 @@ function insertPlotButtons() {
 function injectPopUpDiv() {
     const overlay = document.createElement("div")
     overlay.id = "overlay"
-    overlay.style.position = "fixed"
-    overlay.style.top = "0"
-    overlay.style.right = "0"
-    overlay.style.left = "0"
-    overlay.style.bottom = "0"
-    overlay.style.zIndex = "999"
-    overlay.style.background = "rgba(0, 0, 0, 0.7)"
-    overlay.style.display = "none"
     
     const popUp = document.createElement("div")
     popUp.id = "popUp"
-    popUp.style.width = "80%"
-    popUp.style.height = "80%"
-    popUp.style.padding = "20px"
-    popUp.style.margin = "70px auto"
-    popUp.style.background = "#fff"
-    popUp.style.borderRadius = "5px"
-    popUp.style.position = "relative"
 
     const closeButton = document.createElement("a")
+    closeButton.id = "closeButton"
     closeButton.href = "#"
     closeButton.innerText = "×"
-    closeButton.style.position = "absolute"
-    closeButton.style.top = "20px"
-    closeButton.style.right = "30px"
-    closeButton.style.fontSize = "30px"
-    closeButton.style.fontWeight = "bold"
     closeButton.addEventListener("click", () => {
         overlay.style.display = "none"
     })
