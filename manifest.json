@@ -8,8 +8,9 @@
     {
       "matches": ["https://selma.tu-dresden.de/APP/EXAMRESULTS/*"],
       "js": [
-        "content_scripts/content_script.js",
-        "content_scripts/plot_generator.js"
+        "dependencies/plotly.js",
+        "content_scripts/plot_generator.js",
+        "content_scripts/content_script.js"
       ]
     }
   ],

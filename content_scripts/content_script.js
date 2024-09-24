@@ -86,7 +86,7 @@ async function onPlotButtonClick(gradesButton) {
     }
     const data = extractData(detailPageHtml)
 
-    drawPlot("popup", data)
+    drawPlot("popUp", data)
 }
 
 injectPopUpDiv()
