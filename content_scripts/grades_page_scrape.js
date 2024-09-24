@@ -56,8 +56,14 @@ function extractData(html) {
     const tableBody = tempDiv.getElementsByTagName('tbody')[0]
     const rows = tableBody.getElementsByTagName("tr")
 
+    const INCLUDED_GRADES = ["1,00", "1,30", "1,70", "2,00", "2,30", "2,70", "3,00", "3,30", "3,70", "4,00", "5,00", "be", "nb"]
+
     for (var i = 0; i < rows.length; i++) {
         const label = rows[i].cells[0].innerText
+        console.error(label)
+        if (!INCLUDED_GRADES.includes(label)) {
+            continue
+        }
         data.resultLabels.push(parseFloat(label.replace(',', '.')))
 
         var count = rows[i].cells[1].innerText
