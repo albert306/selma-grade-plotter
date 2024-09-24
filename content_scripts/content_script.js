@@ -71,6 +71,10 @@ function injectPopUpDiv() {
 
 async function onPlotButtonClick(gradesButton) {
     const overlay = document.getElementById("overlay");
+    // prevent repeated calls
+    if (overlay.style.display === "block") {
+        return
+    }
     overlay.style.display = "block"
     
     const gradesButtonScript = gradesButton.parentElement.getElementsByTagName("script")[0]
@@ -85,7 +89,8 @@ async function onPlotButtonClick(gradesButton) {
     }
     const data = extractData(detailPageHtml)
 
-    drawBarChart("popUp", data.resultLabels, data.resultCounts)
+    const barChart = createBarChartElement(data.resultLabels, data.resultCounts)
+    document.getElementById("popUp").appendChild(barChart)
 }
 
 injectPopUpDiv()

@@ -60,11 +60,10 @@ function extractData(html) {
 
     for (var i = 0; i < rows.length; i++) {
         const label = rows[i].cells[0].innerText
-        console.error(label)
         if (!INCLUDED_GRADES.includes(label)) {
             continue
         }
-        data.resultLabels.push(parseFloat(label.replace(',', '.')))
+        data.resultLabels.push(label)
 
         var count = rows[i].cells[1].innerText
         if (count == "---") {

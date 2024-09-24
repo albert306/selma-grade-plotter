@@ -1,11 +1,12 @@
-function drawBarChart(htmlId, labels, values) {
+function createBarChartElement(labels, values) {
     if (labels.length !== values.length) {
         return
     }
 
-    const total = labels.length
+    const maxValue = Math.max(...values)
 
     const table = document.createElement("table")
+    table.id = "barChart"
     table.className = "barchart"
     const valueRow = document.createElement("tr")
     const labelRow = document.createElement("tr")
@@ -15,7 +16,7 @@ function drawBarChart(htmlId, labels, values) {
         label.innerText = values[i]
         const bar = document.createElement("div")
         bar.className = "bar"
-        bar.style.height = (values[i] / total).toString()
+        bar.style.height = `${(values[i] / maxValue) * 100}%`
         
         const td = document.createElement("td")
         td.appendChild(label)
@@ -31,5 +32,6 @@ function drawBarChart(htmlId, labels, values) {
 
     table.appendChild(valueRow)
     table.appendChild(labelRow)
-    document.getElementById(htmlId).appendChild(table)
+
+    return table
 }
