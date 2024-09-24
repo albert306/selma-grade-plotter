@@ -39,18 +39,17 @@ function injectPopUpDiv() {
     overlay.style.bottom = "0"
     overlay.style.zIndex = "999"
     overlay.style.background = "rgba(0, 0, 0, 0.7)"
-    overlay.style.transition = "opacity 500ms"
     overlay.style.display = "none"
     
     const popUp = document.createElement("div")
     popUp.id = "popUp"
-    popUp.style.margin = "70px auto"
-    popUp.style.padding = "20px"
     popUp.style.width = "80%"
+    popUp.style.height = "80%"
+    popUp.style.padding = "20px"
+    popUp.style.margin = "70px auto"
     popUp.style.background = "#fff"
     popUp.style.borderRadius = "5px"
     popUp.style.position = "relative"
-    popUp.style.transition = "all 5s ease-in-out"
 
     const closeButton = document.createElement("a")
     closeButton.href = "#"
@@ -86,7 +85,7 @@ async function onPlotButtonClick(gradesButton) {
     }
     const data = extractData(detailPageHtml)
 
-    drawPlot("popUp", data)
+    drawBarChart("popUp", data.resultLabels, data.resultCounts)
 }
 
 injectPopUpDiv()

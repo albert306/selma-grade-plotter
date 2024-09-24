@@ -1,0 +1,35 @@
+function drawBarChart(htmlId, labels, values) {
+    if (labels.length !== values.length) {
+        return
+    }
+
+    const total = labels.length
+
+    const table = document.createElement("table")
+    table.className = "barchart"
+    const valueRow = document.createElement("tr")
+    const labelRow = document.createElement("tr")
+
+    for (var i = 0; i < values.length; i++) {
+        const label = document.createElement("span")
+        label.innerText = values[i]
+        const bar = document.createElement("div")
+        bar.className = "bar"
+        bar.style.height = (values[i] / total).toString()
+        
+        const td = document.createElement("td")
+        td.appendChild(label)
+        td.appendChild(bar)
+        valueRow.appendChild(td)
+    }
+
+    for (var i = 0; i < labels.length; i++) {
+        const td = document.createElement("td")
+        td.innerText = labels[i]
+        labelRow.appendChild(td)
+    }
+
+    table.appendChild(valueRow)
+    table.appendChild(labelRow)
+    document.getElementById(htmlId).appendChild(table)
+}
