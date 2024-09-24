@@ -29,7 +29,51 @@ function insertPlotButtons() {
     }
 }
 
+function injectPopUpDiv() {
+    const overlay = document.createElement("div")
+    overlay.id = "overlay"
+    overlay.style.position = "fixed"
+    overlay.style.top = "0"
+    overlay.style.right = "0"
+    overlay.style.left = "0"
+    overlay.style.bottom = "0"
+    overlay.style.zIndex = "999"
+    overlay.style.background = "rgba(0, 0, 0, 0.7)"
+    overlay.style.transition = "opacity 500ms"
+    overlay.style.display = "none"
+    
+    const popUp = document.createElement("div")
+    popUp.id = "popUp"
+    popUp.style.margin = "70px auto"
+    popUp.style.padding = "20px"
+    popUp.style.width = "80%"
+    popUp.style.background = "#fff"
+    popUp.style.borderRadius = "5px"
+    popUp.style.position = "relative"
+    popUp.style.transition = "all 5s ease-in-out"
+
+    const closeButton = document.createElement("a")
+    closeButton.href = "#"
+    closeButton.innerText = "×"
+    closeButton.style.position = "absolute"
+    closeButton.style.top = "20px"
+    closeButton.style.right = "30px"
+    closeButton.style.fontSize = "30px"
+    closeButton.style.fontWeight = "bold"
+    closeButton.addEventListener("click", () => {
+        overlay.style.display = "none"
+    })
+
+    popUp.appendChild(closeButton)
+    overlay.appendChild(popUp)
+
+    document.body.appendChild(overlay)
+}
+
 async function onPlotButtonClick(gradesButton) {
+    const overlay = document.getElementById("overlay");
+    overlay.style.display = "block"
+    
     const gradesButtonScript = gradesButton.parentElement.getElementsByTagName("script")[0]
     if (gradesButtonScript == null) return
     const hrefRegex = /&ARGUMENTS=([\s\S]*)","Gradeoverview"/g
@@ -40,8 +84,10 @@ async function onPlotButtonClick(gradesButton) {
     if (detailPageHtml == null) {
         return
     }
-    
-    alert(JSON.stringify(extractData(detailPageHtml)))
+    const data = extractData(detailPageHtml)
+
+    drawPlot("popup", data)
 }
 
+injectPopUpDiv()
 insertPlotButtons()

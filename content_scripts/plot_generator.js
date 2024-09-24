@@ -58,7 +58,6 @@ function extractData(html) {
 
     for (var i = 0; i < rows.length; i++) {
         const label = rows[i].cells[0].innerText
-        console.error(label)
         data.resultLabels.push(parseFloat(label.replace(',', '.')))
 
         var count = rows[i].cells[1].innerText
@@ -73,4 +72,20 @@ function extractData(html) {
     tempDiv.remove()
 
     return data
+}
+
+function drawPlot(htmlId, gradeOverviewData) {
+    const data = [{
+        x: gradeOverviewData.resultLabels,
+        y: gradeOverviewData.resultCounts,
+        type: "bar",
+        orientation: "h",
+        marker: {color:"rgba(255,0,0,0.6)"}
+    }]
+    
+    const layout = {
+        title: "Notenspiegel"
+    }
+
+    Plotly.newPlot(htmlId, data, layout)
 }
