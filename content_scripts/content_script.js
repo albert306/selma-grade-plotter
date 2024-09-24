@@ -19,14 +19,24 @@ function insertPlotButtons() {
         )
         plotButton.innerText = "📊"
         plotButton.addEventListener("click", () => {
-            alert("You clicked button " + plotButton.id)
+            onPlotButtonClick(gradesButton)
         })
-        
+
         const wrapper = document.createElement("td")
         wrapper.appendChild(plotButton)
         
         row.insertAdjacentElement("beforeend", wrapper);
     }
+}
+
+function onPlotButtonClick(gradesButton) {
+    const gradesButtonScript = gradesButton.parentElement.getElementsByTagName("script")[0]
+    if (gradesButtonScript == null) return
+    const hrefRegex = /&ARGUMENTS=([\s\S]*)","Gradeoverview"/g
+    const hrefArguments = hrefRegex.exec(gradesButtonScript.innerText)[1]
+    const href = "https://selma.tu-dresden.de/APP/GRADEOVERVIEW/" + hrefArguments
+    
+    alert(href)
 }
 
 insertPlotButtons()
