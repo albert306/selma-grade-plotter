@@ -35,32 +35,38 @@ function injectPopUpDiv() {
     
     const popUp = document.createElement("div")
     popUp.id = "popUp"
+    popUp.innerHTML = "<h1>Notenverteilung</h1>"
 
     const closeButton = document.createElement("a")
     closeButton.id = "closeButton"
     closeButton.href = "#"
     closeButton.innerText = "×"
     closeButton.addEventListener("click", closePopUp)
+
+    const popUpContent = document.createElement("div")
+    popUpContent.id = "popUpContent"
+
+    popUp.appendChild(closeButton)
+    popUp.appendChild(popUpContent)
+    overlay.appendChild(popUp)
+
+    document.body.appendChild(overlay)
     document.addEventListener("keydown", (event) => {
         if (event.key === "Escape") {
             closePopUp()
         }
     })
-
-    popUp.appendChild(closeButton)
-    overlay.appendChild(popUp)
-
-    document.body.appendChild(overlay)
 }
 
 function closePopUp() {
     const overlay = document.getElementById("overlay")
-    const popUp = document.getElementById("popUp")
-    if (overlay === null || popUp === null) {
+    const popUpContent = document.getElementById("popUpContent")
+    if (overlay == null || popUpContent == null) {
         return
     }
+
     overlay.style.display = "none"
-    popUp.innerHTML = ""
+    popUpContent.innerHTML = ""
 }
 
 async function onPlotButtonClick(gradesButton) {
@@ -84,7 +90,7 @@ async function onPlotButtonClick(gradesButton) {
     const data = extractData(detailPageHtml)
 
     const barChart = createBarChartElement(data.resultLabels, data.resultCounts)
-    document.getElementById("popUp").appendChild(barChart)
+    document.getElementById("popUpContent").appendChild(barChart)
 }
 
 injectPopUpDiv()

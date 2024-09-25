@@ -18,6 +18,8 @@
     margin: 70px auto;
     border-radius: 5px;
     z-index: 1000;
+    display: flex;
+    flex-direction: column;
 }
 
 #closeButton {
@@ -26,4 +28,8 @@
     right: 30px;
     font-size: 30px;
     font-weight: bold;
+}
+
+#popUpContent {
+    flex-grow: 1;
 }
