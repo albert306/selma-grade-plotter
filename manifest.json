@@ -1,5 +1,5 @@
 {
-  "manifest_version": 3,
+  "manifest_version": 2,
   "name": "selma-grade-plotter",
   "version": "1.0",
   "description": "A browser extension that adds a plot feature to the grade overview system on selma (TU Dresden)",
