@@ -6,13 +6,23 @@
     width: 90%;
     height: 426px;
     margin: 0 auto;
+    margin-bottom: 30px;
     border: none;
     border-collapse: collapse;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .barchart tr:nth-child(1) td {
     vertical-align: bottom;
     height: 400px;
+}
+
+.barchart td {
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .barchart tr:last-child td {
