@@ -1,4 +1,4 @@
-function createBarChartElement(labels, values) {
+function createBarChartElement(labels, values, myGrade) {
     if (labels.length !== values.length) {
         return
     }
@@ -25,8 +25,14 @@ function createBarChartElement(labels, values) {
     }
 
     for (var i = 0; i < labels.length; i++) {
+        const div = document.createElement("div")
+        div.innerText = labels[i]
+        if (labels[i] === myGrade) {
+            div.style.backgroundColor = "red"
+            div.style.color = "white"
+        }
         const td = document.createElement("td")
-        td.innerText = labels[i]
+        td.appendChild(div)
         labelRow.appendChild(td)
     }
 

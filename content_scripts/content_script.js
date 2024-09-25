@@ -5,6 +5,8 @@ function insertPlotButtons() {
 
     for (let i = 0; i < examResultRows.length; i++) {
         const row = examResultRows[i]
+        
+        const myGrade = row.getElementsByTagName("td")[2].innerText
 
         const gradesButton = row.getElementsByClassName("link")[0]
         if (gradesButton == null) {
@@ -19,7 +21,7 @@ function insertPlotButtons() {
         )
         plotButton.innerText = "📊"
         plotButton.addEventListener("click", () => {
-            onPlotButtonClick(gradesButton)
+            onPlotButtonClick(myGrade, gradesButton)
         })
 
         const wrapper = document.createElement("td")
@@ -70,7 +72,7 @@ function closePopUp() {
     popUpContent.innerHTML = ""
 }
 
-async function onPlotButtonClick(gradesButton) {
+async function onPlotButtonClick(myGrade, gradesButton) {
     const overlay = document.getElementById("overlay");
     // prevent repeated calls
     if (overlay.style.display === "block") {
@@ -92,7 +94,7 @@ async function onPlotButtonClick(gradesButton) {
 
     const popUpContent = document.getElementById("popUpContent")
     popUpContent.innerHTML = data.infoHtmlText
-    popUpContent.appendChild(createBarChartElement(data.resultLabels, data.resultCounts))
+    popUpContent.appendChild(createBarChartElement(data.resultLabels, data.resultCounts, myGrade))
 }
 
 injectPopUpDiv()
