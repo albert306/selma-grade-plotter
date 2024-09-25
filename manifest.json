@@ -23,9 +23,5 @@
         "content_scripts/overlay.css"
       ]
     }
-  ],
-
-  "permissions": [
-    "activeTab"
   ]
 }
