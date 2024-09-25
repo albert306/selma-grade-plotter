@@ -23,5 +23,11 @@
         "content_scripts/overlay.css"
       ]
     }
-  ]
+  ],
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{8e9b1ace-a09c-474f-b584-5101c5bc5b24}"
+      }
+    }
 }
