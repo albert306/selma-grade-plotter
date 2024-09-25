@@ -40,14 +40,27 @@ function injectPopUpDiv() {
     closeButton.id = "closeButton"
     closeButton.href = "#"
     closeButton.innerText = "×"
-    closeButton.addEventListener("click", () => {
-        overlay.style.display = "none"
+    closeButton.addEventListener("click", closePopUp)
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            closePopUp()
+        }
     })
 
     popUp.appendChild(closeButton)
     overlay.appendChild(popUp)
 
     document.body.appendChild(overlay)
+}
+
+function closePopUp() {
+    const overlay = document.getElementById("overlay")
+    const popUp = document.getElementById("popUp")
+    if (overlay === null || popUp === null) {
+        return
+    }
+    overlay.style.display = "none"
+    popUp.innerHTML = ""
 }
 
 async function onPlotButtonClick(gradesButton) {
