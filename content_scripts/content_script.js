@@ -35,6 +35,10 @@ function insertPlotButtons() {
 function injectPopUpDiv() {
     const overlay = document.createElement("div")
     overlay.id = "overlay"
+    overlay.addEventListener("click", (e) => {
+        closePopUp()
+        e.stopPropagation()
+    })
     
     const popUp = document.createElement("div")
     popUp.id = "popUp"
