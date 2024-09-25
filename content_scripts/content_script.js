@@ -23,6 +23,7 @@ function insertPlotButtons() {
         })
 
         const wrapper = document.createElement("td")
+        wrapper.style.width = "60px"
         wrapper.appendChild(plotButton)
         
         row.insertAdjacentElement("beforeend", wrapper);
@@ -89,8 +90,9 @@ async function onPlotButtonClick(gradesButton) {
     }
     const data = extractData(detailPageHtml)
 
-    const barChart = createBarChartElement(data.resultLabels, data.resultCounts)
-    document.getElementById("popUpContent").appendChild(barChart)
+    const popUpContent = document.getElementById("popUpContent")
+    popUpContent.innerHTML = data.infoHtmlText
+    popUpContent.appendChild(createBarChartElement(data.resultLabels, data.resultCounts))
 }
 
 injectPopUpDiv()

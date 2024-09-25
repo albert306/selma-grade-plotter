@@ -14,12 +14,8 @@ async function fetchGradesDetailPage(gradesButtonLink) {
 }
 
 class GradeOverviewData {
-    moduleName
-    examName
     myGrade
-    average
-    totalResults
-    missingHtmlText
+    infoHtmlText
     resultLabels
     resultCounts
 
@@ -32,24 +28,9 @@ class GradeOverviewData {
 function extractData(html) {
     const data = new GradeOverviewData()
 
-    const moduleRegex = /<b>Modul \/ Veranstaltung:<\/b>([\s\S]*?)<\//gm
-    data.moduleName = moduleRegex.exec(html)[1].trim()
-
-    const examRegex = /<b>Prüfungsleistung:<\/b>([\s\S]*?)<\//gm
-    data.examName = examRegex.exec(html)[1].trim()
-
-    const averageRegex = /<b>Durchschnitt:<\/b>([\s\S]*?)<\//gm
-    data.average = averageRegex.exec(html)[1].trim()
-
-    const totalResultsRegex = /<b>Vorliegende Ergebnisse:<\/b>([\s\S]*?)<\//gm
-    data.average = totalResultsRegex.exec(html)[1].trim()
-
-    const missingTextRegex = /<b>Fehlend:<\/b>[\s\S]*?<\/ul>/gm
-    const optMissingText = missingTextRegex.exec(html)
-    if (optMissingText !== null) {
-        data.missingHtmlText = optMissingText[0]
-    }
-
+    const infoHtmlTextRegex = /(<h2>[\s\S]*)?<div class="tb">/g
+    data.infoHtmlText = infoHtmlTextRegex.exec(html)[1].trim()
+    
     const tempDiv = document.createElement('div')
     tempDiv.innerHTML = html
 
